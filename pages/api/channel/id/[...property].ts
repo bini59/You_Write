@@ -1,18 +1,24 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import cheerio from "cheerio";
-import Request from '../../../../lib/request';
+import axios from "axios";
 
 type Data = {
-  id: string,
+  id: string | undefined,
 }
 
-const loadChannelId = (url: string, res : NextApiResponse<Data>) => {
-    Request(url, function (body) {
-        const $ = cheerio.load(body);
-        const id = $('meta[itemprop="channelId"]').attr('content');
-        res.json({ id: id == null ? '' :id });
-    });
+const loadChannelId = (url: string, res: NextApiResponse<Data>) => {
+    axios.get(url)
+        .then((response) => {
+            const $ = cheerio.load(response.data);
+            const channelId = $('meta[itemprop="channelId"]').attr('content');
+            res.json({ id: channelId });
+        })
+        .then((error) => {
+            if (error != null) {
+                res.json({ id: '' });
+            }
+        });
 }
 
 export default function handler(
