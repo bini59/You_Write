@@ -24,7 +24,7 @@ export default function handler(
         .then((response) => {
             var data = response.data.items[0];
             var video = {
-                id: data.id.videoId,
+                id: id,
                 title: data.snippet.title,
                 description: data.snippet.description,
                 thumbnail: {
