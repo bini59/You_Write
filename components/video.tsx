@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { MouseEventHandler, Ref, useRef } from 'react'
 
 import styles from '../styles/Video.module.css'
+import scrollbar from '../styles/Scrollbar.module.css'
 import Editor from './editor'
 
 type video = {
@@ -32,12 +33,11 @@ const Video = (props:any) => {
     return (
         <div className={styles['video-container']} ref={md}>
             <div className={styles['video-preview']}>
-                {/* <Image src={video_data.thumbnail.url} alt={video_data.title} width={video_data.thumbnail.width} height={video_data.thumbnail.height} /> */}
+                <Image className={styles['video-thumbnail']} src={video_data.thumbnail.url} alt={video_data.title} width={video_data.thumbnail.width} height={video_data.thumbnail.height} />
                 <div className={styles['video-info']} onClick={toggleVideo}>
                     <div className={styles['video-title']}>{video_data.title}</div>
-                    <div className={styles['video-detail']}>
+                    <div className={styles['video-detail'] + ' ' + scrollbar['soft-scrollbar']}>
                         <span className={styles['video-description']}>{video_data.description}</span>
-                        <span className={styles['video-data']}>{video_data.description}</span>
                     </div>
                 </div>
                 <div className={styles["video-toggle-md"]}>

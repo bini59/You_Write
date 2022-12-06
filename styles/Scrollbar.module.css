@@ -1,0 +1,22 @@
+.soft-scrollbar {
+    scrollbar-color: #84e98780 transparent;
+    /* track thumb */
+    scrollbar-width: thin;
+    /* none, thin, or auto */
+}
+.soft-scrollbar::-webkit-scrollbar {
+    width: 20px;
+}
+.soft-scrollbar::-webkit-scrollbar-corner, .soft-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+.soft-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #84e98780;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+.soft-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #84e987;  
+}
+  

@@ -3,6 +3,19 @@
     padding: 14px 20px 14px 20px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.video-title{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.video-detail{
+    margin : 10px 0 0 0;
+    height: 100px;
+    overflow-y: scroll;
 }
 
 .video-preview{
@@ -14,8 +27,8 @@
 }
 
 .video-thumbnail{
-    width: 100px;
-    height: 100px;
+    width: 210px;
+    height: 118px;
 }
 
 .video-info{
