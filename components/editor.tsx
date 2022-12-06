@@ -35,6 +35,15 @@ const Editor = (props: any) => {
         a.remove();
     }
 
+    
+    useEffect(() => {
+        let loadedmd = localStorage.getItem(videoId);
+        if (loadedmd) {
+            (write.current as HTMLDivElement).innerText = loadedmd;
+            update();
+        }
+    }, [])
+
     return (
         <div className={styles['video-write']}  >
             <div className={styles["video-write-wrapper"]}>
