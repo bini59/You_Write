@@ -34,8 +34,11 @@ const Topmenu = () => {
     const [channelName, setChannelName]= useState<string>('Channel Name');
 
 
-    const { setVideos } = useVideoStore(
-        (state) => ({ setVideos: state.setVideo }),
+    const { setVideos, clearVideo } = useVideoStore(
+        (state) => ({
+            setVideos: state.setVideo,
+            clearVideo: state.clearVideo,
+        }),
         shallow
     );
 
@@ -51,6 +54,9 @@ const Topmenu = () => {
     let urlInput = React.useRef<HTMLInputElement>(null);
 
     const saveVideos = () => {
+        clearVideo();
+
+
         let url: string = urlInput.current?.value == undefined ? "" : urlInput.current?.value;
         let url_parts = url.split("/");
         let id = url_parts[url_parts.length - 1];
