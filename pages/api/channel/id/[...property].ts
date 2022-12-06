@@ -37,6 +37,9 @@ export default function handler(
         case 'user':
             loadChannelId('https://www.youtube.com/user/' + property[1], res);
             break;
+        case '@':
+            loadChannelId('https://www.youtube.com/' + property[1], res);
+            break;
         default:
             res.json({ id: '' });
             break;

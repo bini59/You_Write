@@ -27,7 +27,12 @@ const loadChannel = (type: string, id: string, callback: (id: string) => void) =
             );
             break;
         default:
-            callback('');
+            axios.get('/api/channel/id/@/' + id)
+            .then((res) => {
+                callback(res.data.id);
+                }
+            );
+            break;
     }
 }
 
