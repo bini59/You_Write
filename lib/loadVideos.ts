@@ -6,7 +6,7 @@ import axios from 'axios';
  * @param callback callback function with video ids
  */
 const loadVideos = (id:string, callback:(res:string[])=>void) => {
-    axios.get('/api/channel/' + id)
+    axios.get('/api/video/list/' + id)
     .then((res) => {
         callback(res.data.videoIds);
     });

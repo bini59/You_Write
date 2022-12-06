@@ -1,13 +1,23 @@
 import Image from "next/image";
+import { useChannelStore, } from "../lib/channelStore";
+import shallow from "zustand/shallow";
 
 import styles from "../styles/Sidebar.module.css";
 
 const Sidebar = () => {
+
+    const { channel } = useChannelStore(
+        (state) => ({
+            channel: state.channel,
+        }),
+        shallow
+    )
+
     return (
         <section className={styles.sidebar}>
             {/* <!-- logo section --> */}
             <div className={styles.logo}>
-                <Image src="/logo.png" alt="logo" width={50} height={50} />
+                <Image className={styles['sidebar-thumbnail']} src={channel != null ? channel.thumbnail : "/logo.png"} alt="logo" width={200} height={200} />
             </div>
             {/* <!-- logo section end -->
             <!-- search input -->

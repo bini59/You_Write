@@ -10,7 +10,6 @@ type video = {
         height: number,
     },
     channelId: string,
-    channelTitle: string,
 }
 /**
  * get video data with video id

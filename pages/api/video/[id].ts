@@ -11,7 +11,6 @@ type Data = {
         height: number,
     },
     channelId: string,
-    channelTitle: string,
 
 }
 
@@ -34,14 +33,13 @@ export default function handler(
                     height: data.snippet.thumbnails.medium.height,
                 },
                 channelId: data.snippet.channelId,
-                channelTitle: data.snippet.channelTitle,
             }
             res.json(video);
             
         })
         .then((error) => {
             if (error != null) {
-                res.json({ id: '', title: '', description: '', thumbnail: { url: '', width: 0, height: 0 }, channelId: '', channelTitle: '' });
+                res.json({ id: '', title: '', description: '', thumbnail: { url: '', width: 0, height: 0 }, channelId: '' });
             }
         });
 }
