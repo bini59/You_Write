@@ -55,7 +55,7 @@ const Video = (props:any) => {
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             ref={iframe}
             />
-            <Editor />
+            <Editor videoId={video_data.id} />
         </div>
     );
 
