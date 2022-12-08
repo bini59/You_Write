@@ -7,7 +7,7 @@
     width: calc(100% - 200px);
     padding-top: 80px;
     background: back-color;
-    color: #fff;
+    color: rgb(200, 200, 200);
     transition: all 0.3s;
     z-index: 1;
     display: flex;

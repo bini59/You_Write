@@ -1,6 +1,6 @@
-import Sidebar from '../components/sidebar'
-import Topmenu from '../components/topmenu'
-import Container from '../components/container'
+import Sidebar from '../components/section/sidebar'
+import Topmenu from '../components/section/topmenu'
+import Container from '../components/section/container'
 
 import styles from '../styles/Home.module.css'
 

@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react"
 import { marked } from 'marked'
 
 
-import styles from '../styles/Video.module.css'
+import styles from '../../styles/Video.module.css'
 
 
 

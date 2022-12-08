@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import shallow from "zustand/shallow";
-import { useVideoStore } from "../lib/videoStore";
+import { useVideoStore } from "../../lib/videoStore";
 
-import saveVideos from "../lib/structChannel";
+import structChannel from "../../lib/structChannel";
 
-import styles from "../styles/Topmenu.module.css";
-import { useChannelStore } from "../lib/channelStore";
+import styles from "../../styles/Topmenu.module.css";
+import { useChannelStore } from "../../lib/channelStore";
 
 const Topmenu = () => {
 
@@ -31,7 +31,7 @@ const Topmenu = () => {
     const loadVideo = (e:any) => {
         clearVideo();
         let url:string = urlInput.current?.value ? urlInput.current?.value : "";
-        saveVideos(e, url, setChannel, setVideos);
+        structChannel(e, url, setChannel, setVideos);
     }
 
 

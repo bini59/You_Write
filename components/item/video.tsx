@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { MouseEventHandler, Ref, useRef } from 'react'
 
-import styles from '../styles/Video.module.css'
-import scrollbar from '../styles/Scrollbar.module.css'
+import styles from '../../styles/Video.module.css'
+import scrollbar from '../../styles/Scrollbar.module.css'
 import Editor from './editor'
 
 type video = {

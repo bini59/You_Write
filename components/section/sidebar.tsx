@@ -1,14 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import Image from "next/image";
 
-import { useChannelStore, } from "../lib/channelStore";
-import { useVideoStore } from "../lib/videoStore";
+import { useChannelStore, } from "../../lib/channelStore";
+import { useVideoStore } from "../../lib/videoStore";
 import shallow from "zustand/shallow";
 
-import saveVideos from "../lib/structChannel";
+import structChannel from "../../lib/structChannel";
 
-import styles from "../styles/Sidebar.module.css";
+import styles from "../../styles/Sidebar.module.css";
+import ChannelItem from "../item/channelItem";
 
 const Sidebar = () => {
 
@@ -35,8 +36,17 @@ const Sidebar = () => {
         console.log("temp");
         clearVideo();
         let url:string = urlInput.current?.value ? urlInput.current?.value : "";
-        saveVideos(e, url, setChannel, setVideos);
+        structChannel(e, url, setChannel, setVideos);
     }
+
+
+    const [channelList, setChannelList] = React.useState<any>([]);
+    useEffect(() => {
+        let ch = (
+            <ChannelItem props/>
+        );
+        
+    }, [channel])
 
 
     return (

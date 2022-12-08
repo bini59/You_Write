@@ -2,6 +2,7 @@ import loadChannel from "./loadChannel";
 import loadVideo from "./loadVideo";
 import loadVideos from "./loadVideos";
 import loadChannelInfo from "./loadChannelInfo";
+import structVideo from "./structVideo";
 
 type video = {
     id: string,
@@ -21,7 +22,7 @@ type channel = {
     description : string
 }
 
-const saveVideos = (e:any, url:string, setChannel:any, setVideos:any) => {
+const structChannel = (e:any, url:string, setChannel:any, setVideos:any) => {
 
     // let url: string = urlInput.current?.value == undefined ? "" : urlInput.current?.value;
     let url_parts = url.split("/");
@@ -31,15 +32,10 @@ const saveVideos = (e:any, url:string, setChannel:any, setVideos:any) => {
     loadChannel(type, id, (res: string) => {
         loadChannelInfo(res, (channel: channel) => {
             setChannel(channel);
+            structVideo(res, setVideos);
         });
-        loadVideos(res, (ids: string[]) => {
-            for (let videoID in ids) {
-                loadVideo(ids[videoID], (video: video) => {
-                    setVideos(video);
-                });
-            }
-        });
+
     });
 }
 
-export default saveVideos;
+export default structChannel;

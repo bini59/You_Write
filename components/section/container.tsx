@@ -1,9 +1,9 @@
 import shallow from 'zustand/shallow';
 
-import styles from '../styles/Container.module.css'
+import styles from '../../styles/Container.module.css'
 
-import { useVideoStore } from '../lib/videoStore';
-import Video from './video';
+import { useVideoStore } from '../../lib/videoStore';
+import Video from '../item/video';
 
 const Container = (props: any) => {
     const { videos } = useVideoStore(
