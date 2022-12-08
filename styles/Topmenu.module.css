@@ -1,7 +1,7 @@
 @value back-color #151515;
 
 .top-menu{
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 200px;
     width: calc(100% - 200px);
