@@ -1,16 +1,6 @@
 import create from "zustand";
+import { video } from "../types/video";
 
-type video = {
-    id: string,
-    title: string,
-    description: string,
-    thumbnail: {
-        url: string,
-        width: number,
-        height: number,
-    },
-    channelId : string
-}
 
 interface VideoStore {
     video: video[],

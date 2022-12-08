@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import shallow from "zustand/shallow";
 import { useVideoStore } from "../../lib/videoStore";
 
-import structChannel from "../../lib/structChannel";
 
 import styles from "../../styles/Topmenu.module.css";
 import { useChannelStore } from "../../lib/channelStore";

@@ -4,6 +4,7 @@ import { useChannelStore } from "../../lib/channelStore";
 import shallow from "zustand/shallow";
 
 type channel = {
+    id: string,
     title: string,
     thumbnail: string,
     description : string
