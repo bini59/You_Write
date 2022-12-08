@@ -9,6 +9,7 @@ import styles from '../../styles/Video.module.css'
 const Editor = (props: any) => {
     
     let videoId = props.videoId as string;
+    let landScape = props.class as string;
 
     let write = useRef<HTMLDivElement>(null);
     let view = useRef<HTMLDivElement>(null);
@@ -45,7 +46,7 @@ const Editor = (props: any) => {
     }, [])
 
     return (
-        <div className={styles['video-write']}  >
+        <div className={styles['video-write'] + ' ' + landScape}  >
             <div className={styles["video-write-wrapper"]}>
                 <div className={styles["video-write-md"]} contentEditable ref={write} onKeyUp={update} />
                 <div className={styles["video-write-btns"]}>

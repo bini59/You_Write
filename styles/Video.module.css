@@ -48,9 +48,7 @@
 .video-active{
     height: 34vh;
     visibility:visible;
-    
 }
-
 
 .video-write{
     width: 100%;
@@ -140,4 +138,20 @@
 }
 .video-write .video-write-btns button:nth-child(2):active {
     background-color: #B2EBF2;
+}
+
+
+
+.wrap-section {
+    display:flex;
+    flex-direction: column;
+}
+.wrap-section-row {
+    flex-direction: row;
+}
+.video-youtube-row {
+    width: 50%;
+}
+.video-write-row {
+    width: 50%;
 }

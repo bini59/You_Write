@@ -1,20 +1,16 @@
 import Image from 'next/image'
-import { MouseEventHandler, Ref, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import styles from '../../styles/Video.module.css'
 import scrollbar from '../../styles/Scrollbar.module.css'
 import Editor from './editor'
 
-type video = {
-    id: string,
-    title: string,
-    description: string,
-    thumbnail: {
-        url: string,
-        width: number,
-        height: number,
-    },
-    channelId : string
+import { video } from '../../types/video'
+
+type landScape = {
+    section: string,
+    video: string,
+    write: string,
 }
 
 const Video = (props:any) => {
@@ -29,6 +25,30 @@ const Video = (props:any) => {
     const toggleWrite = (e: any) => {
         (md.current as HTMLDivElement).classList.toggle(styles['editor-active']);
     }
+
+    const [landScaped, setLandScaped] = useState<landScape>({
+        section: '',
+        video: '',
+        write: '',
+    });
+    useEffect(() => {
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        if (window.matchMedia('(orientation: landscape)').matches
+            && (width > height)
+        ) {
+            console.log("bb")
+            setLandScaped({
+                section: styles['wrap-section-row'],
+                video: styles['video-youtube-row'],
+                write: styles['video-write-row'],
+            });
+        }
+        
+    }, []);
+
+    
+
 
     return (
         <div className={styles['video-container']} ref={md}>
@@ -46,16 +66,19 @@ const Video = (props:any) => {
                     </div>
                 </div>
             </div>
-            <iframe
-            className={styles['video-youtube']} 
-            width="560"
-            height="315"
-            src={'https://www.youtube-nocookie.com/embed/' + video_data.id}
-            title="YouTube video player"
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            ref={iframe}
-            />
-            <Editor videoId={video_data.id} />
+            <div className={styles['wrap-section'] + ' ' + landScaped.section}>
+
+                <iframe
+                className={styles['video-youtube'] + ' ' + landScaped.video} 
+                width="560"
+                height="315"
+                src={'https://www.youtube-nocookie.com/embed/' + video_data.id}
+                title="YouTube video player"
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                ref={iframe}
+                />
+                <Editor videoId={video_data.id} class={landScaped.write} />
+            </div>
         </div>
     );
 
