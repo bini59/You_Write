@@ -27,19 +27,11 @@ const Topmenu = () => {
 
     let urlInput = React.useRef<HTMLInputElement>(null);
 
-    const loadVideo = (e:any) => {
-        clearVideo();
-        let url:string = urlInput.current?.value ? urlInput.current?.value : "";
-        structChannel(e, url, setChannel, setVideos);
-    }
-
 
     return (
         <section className={styles['top-menu']}>
-            <input ref={urlInput} type="text" id="youtuebeUrl" />
-            <button id="loadVideos" onClick={loadVideo}>load</button>
             <div>
-                <div>{channel == null ? "Channel name" : channel.title}</div>
+                <div><a href={channel ? `https://www.youtube.com/channel/${channel?.id}` : '#'}>{channel == null ? "Channel name" : channel.title}</a></div>
             </div>
 
         </section>
