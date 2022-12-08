@@ -1,14 +1,6 @@
 import Image from "next/image";
 
-import { useChannelStore } from "../../lib/channelStore";
-import shallow from "zustand/shallow";
-
-type channel = {
-    id: string,
-    title: string,
-    thumbnail: string,
-    description : string
-}
+import { channel } from "../../types/channel";
 
 
 const ChannelItem = (prop:any) => {
@@ -17,7 +9,7 @@ const ChannelItem = (prop:any) => {
 
     return (
         <div>
-            <Image src={channel.thumbnail} alt="ch_image" />
+            <Image src={channel.thumbnail} alt="ch_image" width={30} height={30} />
             <span>{channel.title}</span> 
         </div>
     );

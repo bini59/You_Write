@@ -6,10 +6,13 @@ import { useChannelStore, } from "../../lib/channelStore";
 import { useVideoStore } from "../../lib/videoStore";
 import shallow from "zustand/shallow";
 
-import structChannel from "../../lib/structChannel";
+import { searchChannel, searchChannelwithUrl } from "../../lib/searchChannel";
+
+
 
 import styles from "../../styles/Sidebar.module.css";
 import ChannelItem from "../item/channelItem";
+import { channel } from "../../types/channel";
 
 const Sidebar = () => {
 
@@ -21,32 +24,40 @@ const Sidebar = () => {
         shallow
     );
     
-    const { channel, setChannel } = useChannelStore(
+    const { channel, channels, setChannel, setChannels, clearChannels } = useChannelStore(
         (state) => ({
             channel: state.channel,
+            channels: state.channels,
             setChannel: state.setChannel,
+            setChannels: state.setChannels,
+            clearChannels: state.clearChannels,
         }),
         shallow
     )
     
     let urlInput = React.useRef<HTMLInputElement>(null);
-    const loadVideo = (e:any) => {
+    const loadChannels = (e:any) => {
         if (e.key != "Enter") return;
+        
+        clearChannels();
 
-        console.log("temp");
-        clearVideo();
-        let url:string = urlInput.current?.value ? urlInput.current?.value : "";
-        structChannel(e, url, setChannel, setVideos);
+        let urlRegex = new RegExp(/^(http(s)?:\/\/)?((w){3}.)?youtu(be|.be)?(\.com)?\/.+/);
+
+        let input:string = urlInput.current?.value ? urlInput.current?.value : "";
+        if (input == "") return;
+        if (urlRegex.test(input)) searchChannelwithUrl(input, (channels: channel[]) => { setChannel(channels[0]); })
+        else searchChannel(input, (channels: channel[]) => { setChannels(channels); });
+        console.log(channels)
     }
 
 
-    const [channelList, setChannelList] = React.useState<any>([]);
+    const [channelList, setChannelList] = React.useState<JSX.Element[]>([]);
     useEffect(() => {
-        let ch = (
-            <ChannelItem props/>
-        );
-        
-    }, [channel])
+        let list:JSX.Element[] = channels.map((channel: any) => {
+            return <li><ChannelItem channel={channel} id={channel.id} /></li>
+        })
+        setChannelList(list);
+    }, [channels])
 
 
     return (
@@ -59,15 +70,15 @@ const Sidebar = () => {
             <!-- search input -->
             <!-- 채널 검색 --> */}
             <div className={styles.search}>
-                <input type="text" placeholder="Search..." onKeyUp={loadVideo} ref={urlInput} />
-                <ion-icon name="search-outline" size="large" onClick={loadVideo}></ion-icon>
+                <input type="text" placeholder="Search..." onKeyUp={loadChannels} ref={urlInput} />
+                <ion-icon name="search-outline" size="large" onClick={loadChannels}></ion-icon>
             </div>
             {/* <!-- search input end -->
             <!-- sidebar menu -->
             <!-- 즐겨찾기 리스트 --> */}
             <div className={styles['sidebar-menu']}>
                 <ul>
-                    <li>
+                    {/* <li>
                         <a href="#">
                             <span className={styles.icon}><i className="fas fa-home"></i></span>
                             <span className={styles.title}>Dashboard</span>
@@ -102,7 +113,8 @@ const Sidebar = () => {
                         <span className={styles.icon}><i className="fas fa-cog"></i></span>
                             <span className={styles.title}>Dashboard</span>
                         </a>
-                    </li>
+                    </li> */}
+                    {channelList}
                 </ul>
             </div>
             {/* <!-- sidebar menu end --> */}
