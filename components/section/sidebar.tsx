@@ -45,9 +45,8 @@ const Sidebar = () => {
 
         let input:string = urlInput.current?.value ? urlInput.current?.value : "";
         if (input == "") return;
-        if (urlRegex.test(input)) searchChannelwithUrl(input, (channels: channel[]) => { setChannel(channels[0]); })
+        if (urlRegex.test(input)) searchChannelwithUrl(input.split("https://www.youtube.com/")[1], (channels: channel[]) => { setChannel(channels[0]); })
         else searchChannel(input, (channels: channel[]) => { setChannels(channels); });
-        console.log(channels)
     }
 
 
@@ -77,45 +76,7 @@ const Sidebar = () => {
             <!-- sidebar menu -->
             <!-- 즐겨찾기 리스트 --> */}
             <div className={styles['sidebar-menu']}>
-                <ul>
-                    {/* <li>
-                        <a href="#">
-                            <span className={styles.icon}><i className="fas fa-home"></i></span>
-                            <span className={styles.title}>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <span className={styles.icon}><i className="fas fa-user"></i></span>
-                            <span className={styles.title}>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span className={styles.icon}><i className="fas fa-users"></i></span>
-                            <span className={styles.title}>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <span className={styles.icon}><i className="fas fa-shopping-cart"></i></span>
-                            <span className={styles.title}>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <span className={styles.icon}><i className="fas fa-chart-line"></i></span>
-                            <span className={styles.title}>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <span className={styles.icon}><i className="fas fa-cog"></i></span>
-                            <span className={styles.title}>Dashboard</span>
-                        </a>
-                    </li> */}
-                    {channelList}
-                </ul>
+                <ul>{channelList}</ul>
             </div>
             {/* <!-- sidebar menu end --> */}
 

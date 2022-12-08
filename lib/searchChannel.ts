@@ -24,9 +24,11 @@ const searchChannel = (q: string, callback: (c: channel[]) => void) => {
  * @param url search channel with url
  * @param callback callback function, param : channel array
  */
- const searchChannelwithUrl = (url:string, callback:(c:channel[])=>void) => {
+const searchChannelwithUrl = (url: string, callback: (c: channel[]) => void) => {
+    
     axios.get('/api/channel/' + url)
     .then((response) => {
+        console.log(url);
         callback([response.data]);
     })
     .then((error) => {

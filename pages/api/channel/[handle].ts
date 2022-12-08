@@ -6,30 +6,32 @@ import axios from "axios";
 import { channel } from '../../../types/channel';
 
 
-const loadChannelId = async (url: string, callback:(id:string)=>void) => {
-    let id = await axios.get(url)
+const loadChannelId = (url: string, callback: (id: string) => void) => {
+    axios.get(url)
         .then((response) => {
             const $ = cheerio.load(response.data);
             const channelId = $('meta[itemprop="channelId"]').attr('content');
-            return channelId;
+            callback(channelId ? channelId : '');
         })
         .then((error) => {
             if (error != null) {
-                return '';
+                callback('');
             }
         });
     
-    callback(id ? id : '');
+    
 }
 
 export default function handler(
     req: NextApiRequest,
     res: NextApiResponse<channel>
 ) {
-    let url: string = req.query.id as string;
+    let handle: string = req.query.handle as string;
+    let url = 'https://www.youtube.com/' + handle;
     loadChannelId(url, (id) => {
+        console.log("id" + id);
         axios.get(
-            `https://www.googleapis.com/youtube/v3/channels?key=${process.env.APIKEY}&part=snippet,id&id=${id}`
+            `https://www.googleapis.com/youtube/v3/channels?key=${process.env.APIKEY}&part=snippet&id=${id}`
         ).then((response) => {
             let c: channel = {
                 id: response.data.items[0].id,
