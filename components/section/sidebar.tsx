@@ -15,14 +15,6 @@ import ChannelItem from "../item/channelItem";
 import { channel } from "../../types/channel";
 
 const Sidebar = () => {
-
-    const { setVideos, clearVideo } = useVideoStore(
-        (state) => ({
-            setVideos: state.setVideo,
-            clearVideo: state.clearVideo,
-        }),
-        shallow
-    );
     
     const { channel, channels, setChannel, setChannels, clearChannels } = useChannelStore(
         (state) => ({
@@ -48,7 +40,6 @@ const Sidebar = () => {
         if (urlRegex.test(input)) searchChannelwithUrl(input.split("https://www.youtube.com/")[1], (channels: channel[]) => { setChannel(channels[0]); })
         else searchChannel(input, (channels: channel[]) => { setChannels(channels); });
     }
-
 
     const [channelList, setChannelList] = React.useState<JSX.Element[]>([]);
     useEffect(() => {

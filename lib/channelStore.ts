@@ -1,11 +1,6 @@
 import create from "zustand";
 
-type channel = {
-    title: string,
-    description: string,
-    thumbnail : string
-
-}
+import { channel } from "../types/channel";
 
 interface ChannelStore {
     channel: channel | null,
