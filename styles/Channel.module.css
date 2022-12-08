@@ -1,0 +1,25 @@
+.ch-container{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding-left: 14px;
+}
+
+.ch-img{
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.ch-title{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 5px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

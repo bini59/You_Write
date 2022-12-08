@@ -24,7 +24,7 @@ export default function handler(
 ) {
     var query: string = req.query.query as string;
     axios.get(
-        `https://www.googleapis.com/youtube/v3/search?key=${process.env.APIKEY}&part=snippet,id&order=date&maxResults=8&type=channel&q=${query}`
+        `https://www.googleapis.com/youtube/v3/search?key=${process.env.APIKEY}&part=snippet,id&order=date&maxResults=10&type=channel&q=${query}`
     ).then((response) => {
         let channels: channel[] = [];
         response.data.items.forEach((item: any) => {
