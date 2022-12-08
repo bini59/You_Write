@@ -1,11 +1,13 @@
+@value back-color #4c4c4c;
+
 .container{
     position: absolute;
     top: 200px;
     left: 200px;
     width: calc(100% - 200px);
     padding-top: 80px;
-    background: rgb(186, 255, 184);
-    color: #000;
+    background: back-color;
+    color: #fff;
     transition: all 0.3s;
     z-index: 1;
     display: flex;

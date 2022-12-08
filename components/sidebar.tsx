@@ -1,30 +1,56 @@
+import React from "react";
+
 import Image from "next/image";
+
 import { useChannelStore, } from "../lib/channelStore";
+import { useVideoStore } from "../lib/videoStore";
 import shallow from "zustand/shallow";
+
+import saveVideos from "../lib/structChannel";
 
 import styles from "../styles/Sidebar.module.css";
 
 const Sidebar = () => {
 
-    const { channel } = useChannelStore(
+    const { setVideos, clearVideo } = useVideoStore(
+        (state) => ({
+            setVideos: state.setVideo,
+            clearVideo: state.clearVideo,
+        }),
+        shallow
+    );
+    
+    const { channel, setChannel } = useChannelStore(
         (state) => ({
             channel: state.channel,
+            setChannel: state.setChannel,
         }),
         shallow
     )
+    
+    let urlInput = React.useRef<HTMLInputElement>(null);
+    const loadVideo = (e:any) => {
+        if (e.key != "Enter") return;
+
+        console.log("temp");
+        clearVideo();
+        let url:string = urlInput.current?.value ? urlInput.current?.value : "";
+        saveVideos(e, url, setChannel, setVideos);
+    }
+
 
     return (
         <section className={styles.sidebar}>
             {/* <!-- logo section --> */}
             <div className={styles.logo}>
-                <Image className={styles['sidebar-thumbnail']} src={channel != null ? channel.thumbnail : "/logo.png"} alt="logo" width={200} height={200} />
+                <Image className={styles['sidebar-thumbnail']} src={channel != null ? channel.thumbnail : "/favicon.ico"} alt="logo" width={200} height={200} />
             </div>
             {/* <!-- logo section end -->
             <!-- search input -->
             <!-- 채널 검색 --> */}
             <div className={styles.search}>
-                <input type="text" placeholder="Search..." />
-                <i className="fas fa-search"></i>
+                <input type="text" placeholder="Search..." onKeyUp={loadVideo} ref={urlInput} />
+                <ion-icon name="search-outline" size="large" onClick={loadVideo}></ion-icon>
             </div>
             {/* <!-- search input end -->
             <!-- sidebar menu -->

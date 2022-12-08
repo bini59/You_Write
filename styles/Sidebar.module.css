@@ -1,4 +1,4 @@
-@value back-color #5732eb;
+@value back-color #2d2d2d;
 
 
 .sidebar {
@@ -30,6 +30,12 @@
 }
 
 .sidebar .search{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+
     position: absolute;
     top: 200px;
     left: 0;
@@ -41,27 +47,20 @@
     z-index: 1;
 }
 
-.sidebar .search i{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
-    background: back-color;
-    color: #fff;
-    transition: all 0.3s;
-    z-index: 1;
+.sidebar .search ion-icon:hover{
+    cursor: pointer;
+    
 }
 .sidebar .search input{
-    position: absolute;
-    top: 0;
-    left: 50px;
     width: 150px;
-    height: 50px;
-    background: back-color;
-    color: #fff;
+    height: 35px;
+    background: #fff;
+    color: #000;
     transition: all 0.3s;
     z-index: 1;
+    border : 1px solid #fff;
+    border-radius: 4px;
+    padding-left: 10px;
 }
 
 .sidebar .sidebar-menu{
