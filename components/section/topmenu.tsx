@@ -31,7 +31,8 @@ const Topmenu = () => {
     return (
         <section className={styles['top-menu']}>
             <div>
-                <div><a href={channel ? `https://www.youtube.com/channel/${channel?.id}` : '#'}>{channel == null ? "Channel name" : channel.title}</a></div>
+                <div className={styles.title}><a href={channel ? `https://www.youtube.com/channel/${channel?.id}` : '#'}>{channel == null ? "Channel name" : channel.title}</a></div>
+                <div className={styles.description}>{channel ? channel?.description : ""}</div>
             </div>
 
         </section>
