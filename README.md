@@ -14,6 +14,9 @@
 
 ## 프로그램실행
 
+[Github repository](https://github.com/bini59/You_Write)에도 업로드 하였습니다!
+
+
 `download` ( in Command Line )
 
 ```bash
