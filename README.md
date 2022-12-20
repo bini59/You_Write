@@ -20,6 +20,8 @@
 git clone https://github.com/bini59/You_Write.git
 ```
 
+`run`
+
 ```bash
 cd src
 npm i
