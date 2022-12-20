@@ -14,6 +14,12 @@
 
 ## 프로그램실행
 
+`download` ( in Command Line )
+
+```bash
+git clone https://github.com/bini59/You_Write.git
+```
+
 ```bash
 cd src
 npm i
