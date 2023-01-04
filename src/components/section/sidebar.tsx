@@ -59,7 +59,7 @@ const Sidebar = () => {
     const [channelList, setChannelList] = React.useState<JSX.Element[]>([]);
     useEffect(() => {
         let list:JSX.Element[] = channels.map((channel: any) => {
-            return <li><ChannelItem channel={channel} key={channel.id} /></li>
+            return <li key={channel.id}><ChannelItem channel={channel} /></li>
         })
         setChannelList(list);
     }, [channels])
@@ -76,7 +76,7 @@ const Sidebar = () => {
             <!-- 채널 검색 --> */}
             <div className={styles.search}>
                 <input type="text" placeholder="Search..." onKeyUp={(e) => { if (e.key != "Enter") return;  loadChannels(e)} } ref={urlInput} />
-                <div onClick={loadChannels}><ion-icon name="search-outline" size="large" /></div>
+                <div onClick={loadChannels}>검색</div>
                 
             </div>
             {/* <!-- search input end -->
