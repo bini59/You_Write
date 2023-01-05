@@ -24,6 +24,13 @@ const Editor = (props: any) => {
         e.target.innerText == "확장" ? e.target.innerText = "축소" : e.target.innerText = "확장"
     }
 
+    const full = (e: any) => {
+        (writeWrapper.current as HTMLDivElement).classList.toggle(styles["video-write-full"]);
+        (viewWrapper.current as HTMLDivElement).classList.toggle(styles["video-view-full"]);
+        
+        e.target.innerText == "전체화면" ? e.target.innerText = "축소" : e.target.innerText = "전체화면"
+    }
+
     const update = () => {
         (view.current as HTMLDivElement).innerHTML = marked.parse((write.current as HTMLDivElement).innerText);
     }
@@ -68,7 +75,7 @@ const Editor = (props: any) => {
                 <div className={styles["video-write-view"]} ref={view} />
                 <div className={styles["video-write-btns"] + " " + styles["video-view-btns"]}>
                     <button className={styles["video-write-btn view-up"]} onClick={sizeup}>확장</button>
-                    <button className={styles["video-write-btn view-full"]} onClick={download}>전체화면</button>
+                    <button className={styles["video-write-btn view-full"]} onClick={full}>전체화면</button>
                 </div>  
             </div>
             
