@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { marked } from 'marked'
 
 
@@ -10,6 +10,10 @@ const Editor = (props: any) => {
     
     let videoId = props.videoId as string;
     let landScape = props.class as string;
+
+
+
+    let wrap = useRef<HTMLDivElement>(null);
 
     let write = useRef<HTMLDivElement>(null);
     let view = useRef<HTMLDivElement>(null);
@@ -27,8 +31,10 @@ const Editor = (props: any) => {
     const full = (e: any) => {
         (writeWrapper.current as HTMLDivElement).classList.toggle(styles["video-write-full"]);
         (viewWrapper.current as HTMLDivElement).classList.toggle(styles["video-view-full"]);
+
+        (wrap.current as HTMLDivElement).setAttribute("style", `z-index: ${props.zindex()}`);
         
-        e.target.innerText == "전체화면" ? e.target.innerText = "축소" : e.target.innerText = "전체화면"
+        e.target.innerText == "전체화면" ? e.target.innerText = "축소" : e.target.innerText = "전체화면"        
     }
 
     const update = () => {
@@ -63,7 +69,7 @@ const Editor = (props: any) => {
     }, [])
 
     return (
-        <div className={styles['video-write'] + ' ' + landScape}  >
+        <div className={styles['video-write'] + ' ' + landScape}  ref={wrap}>
             <div className={styles["video-write-wrapper"]} ref={writeWrapper}>
                 <div className={styles["video-write-md"]} contentEditable ref={write} onKeyUp={update} />
                 <div className={styles["video-write-btns"]}>

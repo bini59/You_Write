@@ -77,7 +77,7 @@ const Video = (props:any) => {
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen'
                 ref={iframe}
                 />
-                <Editor videoId={video_data.id} class={landScaped.write} />
+                <Editor videoId={video_data.id} class={landScaped.write} zindex={props.zindex} />
             </div>
         </div>
     );
