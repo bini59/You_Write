@@ -74,7 +74,7 @@ const Video = (props:any) => {
                 height="315"
                 src={'https://www.youtube-nocookie.com/embed/' + video_data.id}
                 title="YouTube video player"
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen'
                 ref={iframe}
                 />
                 <Editor videoId={video_data.id} class={landScaped.write} />
