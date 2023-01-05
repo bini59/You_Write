@@ -14,6 +14,16 @@ const Editor = (props: any) => {
     let write = useRef<HTMLDivElement>(null);
     let view = useRef<HTMLDivElement>(null);
 
+    let writeWrapper = useRef<HTMLDivElement>(null);
+    let viewWrapper = useRef<HTMLDivElement>(null);
+
+    const sizeup = (e: any) => {
+        (writeWrapper.current as HTMLDivElement).classList.toggle(styles["video-write-up"]);
+        (viewWrapper.current as HTMLDivElement).classList.toggle(styles["video-view-up"]);
+        
+        e.target.innerText == "확장" ? e.target.innerText = "축소" : e.target.innerText = "확장"
+    }
+
     const update = () => {
         (view.current as HTMLDivElement).innerHTML = marked.parse((write.current as HTMLDivElement).innerText);
     }
@@ -47,14 +57,21 @@ const Editor = (props: any) => {
 
     return (
         <div className={styles['video-write'] + ' ' + landScape}  >
-            <div className={styles["video-write-wrapper"]}>
+            <div className={styles["video-write-wrapper"]} ref={writeWrapper}>
                 <div className={styles["video-write-md"]} contentEditable ref={write} onKeyUp={update} />
                 <div className={styles["video-write-btns"]}>
                     <button className={styles["video-write-btn write-save"]} onClick={save}>저장</button>
                     <button className={styles["video-write-btn write-download"]} onClick={download}>다운로드</button>
                 </div>
             </div>
-            <div className={styles["video-write-view"]} ref={view} />
+            <div className={styles["video-view-wrapper"]} ref={viewWrapper}>
+                <div className={styles["video-write-view"]} ref={view} />
+                <div className={styles["video-write-btns"] + " " + styles["video-view-btns"]}>
+                    <button className={styles["video-write-btn view-up"]} onClick={sizeup}>확장</button>
+                    <button className={styles["video-write-btn view-full"]} onClick={download}>전체화면</button>
+                </div>  
+            </div>
+            
         </div>
     )
 }
