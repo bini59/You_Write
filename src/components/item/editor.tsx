@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, use } from "react"
 import { marked } from 'marked'
 
 
@@ -11,8 +11,6 @@ const Editor = (props: any) => {
     let videoId = props.videoId as string;
     let landScape = props.class as string;
 
-
-
     let wrap = useRef<HTMLDivElement>(null);
 
     let write = useRef<HTMLDivElement>(null);
@@ -20,6 +18,8 @@ const Editor = (props: any) => {
 
     let writeWrapper = useRef<HTMLDivElement>(null);
     let viewWrapper = useRef<HTMLDivElement>(null);
+
+    const [writed, setWrited] = useState("");
 
     const sizeup = (e: any) => {
         (writeWrapper.current as HTMLDivElement).classList.toggle(styles["video-write-up"]);
@@ -39,6 +39,7 @@ const Editor = (props: any) => {
 
     const update = () => {
         (view.current as HTMLDivElement).innerHTML = marked.parse((write.current as HTMLDivElement).innerText);
+        setWrited((write.current as HTMLDivElement).innerText);
     }
 
     const save = () => {
@@ -58,8 +59,13 @@ const Editor = (props: any) => {
         a.click();
         a.remove();
     }
-
     
+    useEffect(() => {
+        return (() => {
+            localStorage.setItem(videoId, writed);
+        })
+    }, [writed])
+
     useEffect(() => {
         let loadedmd = localStorage.getItem(videoId);
         if (loadedmd) {
@@ -73,7 +79,7 @@ const Editor = (props: any) => {
             <div className={styles["video-write-wrapper"]} ref={writeWrapper}>
                 <div className={styles["video-write-md"]} contentEditable ref={write} onKeyUp={update} />
                 <div className={styles["video-write-btns"]}>
-                    <button className={styles["video-write-btn write-save"]} onClick={save}>저장</button>
+                    {/* <button className={styles["video-write-btn write-save"]} onClick={save}>저장</button> */}
                     <button className={styles["video-write-btn write-download"]} onClick={download}>다운로드</button>
                 </div>
             </div>

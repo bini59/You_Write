@@ -197,3 +197,30 @@
 .video-write-row {
     width: 50%;
 }
+
+.video-toggle-md {
+    display: flex;
+}
+
+.video-toggle-md .video-toggle-btn {
+    width: 60px;
+    margin-left: 10px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: #c4c4c4;
+    box-shadow: 1px 1px 0px 0px rgb(255 255 255 / 50%);
+    color: white
+}
+
+.video-toggle-md .video-toggle-btn:hover{
+    cursor: pointer;
+    box-shadow: 2px 1.5px 0px 0px rgb(255 255 255 / 50%);
+}
+
+.video-toggle-md .video-toggle-btn:active{
+    cursor: pointer;
+    box-shadow: 0.5px 0.5px 0px 0px rgb(255 255 255 / 50%);
+}

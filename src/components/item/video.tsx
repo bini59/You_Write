@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import styles from '../../styles/Video.module.css'
 import scrollbar from '../../styles/Scrollbar.module.css'
@@ -47,7 +47,27 @@ const Video = (props:any) => {
         
     }, []);
 
-    
+    let video = (
+        <iframe
+        className={styles['video-youtube'] + ' ' + landScaped.video} 
+        width="560"
+        height="315"
+        src={'https://www.youtube-nocookie.com/embed/' + video_data.id}
+        title="YouTube video player"
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen'
+        ref={iframe}
+        />
+    )
+    let editor = <Editor videoId={video_data.id} class={landScaped.write} zindex={props.zindex} />
+
+    const [front, setFront] = useState(video);
+    const [back, setBack] = useState(editor);
+
+    const change_order = () => {
+        let temp = front;
+        setFront(back);
+        setBack(temp);
+    }
 
 
     return (
@@ -62,22 +82,16 @@ const Video = (props:any) => {
                 </div>
                 <div className={styles["video-toggle-md"]}>
                     <div className={styles["video-toggle-btn"]} onClick={toggleWrite}>
-                        🔽
+                        에디터
+                    </div>
+                    <div className={styles["video-toggle-btn"]} onClick={change_order}>
+                        변경
                     </div>
                 </div>
             </div>
             <div className={styles['wrap-section'] + ' ' + landScaped.section}>
-
-                <iframe
-                className={styles['video-youtube'] + ' ' + landScaped.video} 
-                width="560"
-                height="315"
-                src={'https://www.youtube-nocookie.com/embed/' + video_data.id}
-                title="YouTube video player"
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen'
-                ref={iframe}
-                />
-                <Editor videoId={video_data.id} class={landScaped.write} zindex={props.zindex} />
+                {front}
+                {back}
             </div>
         </div>
     );
