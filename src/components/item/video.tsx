@@ -31,21 +31,21 @@ const Video = (props:any) => {
         video: '',
         write: '',
     });
-    useEffect(() => {
-        let width = window.innerWidth;
-        let height = window.innerHeight;
-        if (window.matchMedia('(orientation: landscape)').matches
-            && (width > height)
-        ) {
-            console.log("bb")
-            setLandScaped({
-                section: styles['wrap-section-row'],
-                video: styles['video-youtube-row'],
-                write: styles['video-write-row'],
-            });
-        }
+    // useEffect(() => {
+    //     let width = window.innerWidth;
+    //     let height = window.innerHeight;
+    //     if (window.matchMedia('(orientation: landscape)').matches
+    //         && (width > height)
+    //     ) {
+    //         console.log("bb")
+    //         setLandScaped({
+    //             section: styles['wrap-section-row'],
+    //             video: styles['video-youtube-row'],
+    //             write: styles['video-write-row'],
+    //         });
+    //     }
         
-    }, []);
+    // }, []);
 
     let video = (
         <iframe

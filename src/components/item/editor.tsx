@@ -20,6 +20,7 @@ const Editor = (props: any) => {
     let viewWrapper = useRef<HTMLDivElement>(null);
 
     const [writed, setWrited] = useState("");
+    const [locate, setLocate] = useState("오른쪽으로 변경")
 
     const sizeup = (e: any) => {
         (writeWrapper.current as HTMLDivElement).classList.toggle(styles["video-write-up"]);
@@ -59,6 +60,11 @@ const Editor = (props: any) => {
         a.click();
         a.remove();
     }
+
+    const changeLocate = () => {
+        (wrap.current as Element).setAttribute("style", locate == "오른쪽으로 변경" ? "flex-direction : row-reverse" : "flex-direction: row");
+        setLocate(locate == "오른쪽으로 변경" ? "왼쪽으로 변경" : "오른쪽으로 변경")
+    }
     
     useEffect(() => {
         return (() => {
@@ -79,7 +85,7 @@ const Editor = (props: any) => {
             <div className={styles["video-write-wrapper"]} ref={writeWrapper}>
                 <div className={styles["video-write-md"]} contentEditable ref={write} onKeyUp={update} />
                 <div className={styles["video-write-btns"]}>
-                    {/* <button className={styles["video-write-btn write-save"]} onClick={save}>저장</button> */}
+                    <button className={styles["video-write-btn write-save"]} onClick={changeLocate}>{locate}</button>
                     <button className={styles["video-write-btn write-download"]} onClick={download}>다운로드</button>
                 </div>
             </div>
