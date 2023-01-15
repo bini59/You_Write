@@ -29,7 +29,7 @@ export default function handler(
     res: NextApiResponse<video[]>
 ) {
     var id: string = req.query.id as string;
-    const url = `https://www.googleapis.com/youtube/v3/search?key=${process.env.APIKEY}&part=snippet,id&order=date&maxResults=20&type=video&channelId=${id}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?key=${process.env.APIKEY}&part=snippet,id&order=date&maxResults=100&type=video&channelId=${id}`;
     axios.get(url)
         .then((response) => {
             let videos: video[] = [];
